@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="plugin.video.thuviencine" name="ThuVienCine" version="0.0.5" provider-name="CineTV">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+    <import addon="script.module.requests" version="2.31.0"/>
+    <import addon="script.module.beautifulsoup4" version="4.12.2"/>
+    <import addon="script.module.simplecache" version="2.0.2"/>
+  </requires>
+  <extension point="xbmc.service" library="service.py" start="startup" />
+  <extension point="xbmc.python.pluginsource" library="main.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">ThuVienCine Kodi Addon</summary>
+    <description lang="en_GB">Xem phim trực tuyến từ nguồn thuviencine.com</description>
+    <disclaimer lang="en_GB">plugin.video.thuviencine</disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GPL-3.0</license>
+    <!-- <forum></forum> -->
+    <!-- <website>https://thuviencine.github.io/</website> -->
+    <!-- <source>https://thuviencine.github.io/</source> -->
+    <news>
+    [0.0.5] - 2026-05-27
+    - Fix hiển thị không đủ file trong folder Fshare.
+    - Hiển thị thông báo khi có phiên bản mới.
+    - Tự cập nhật tên miền mới.
+
+    [0.0.1] - 2026-05-21
+    - Khởi tạo addon.
+    </news>
+    <assets>
+        <icon>resources/images/icons/icon.png</icon>
+        <!-- <fanart></fanart>
+        <screenshot>resources/screenshot1.jpg</screenshot>
+        <screenshot>resources/screenshot2.jpg</screenshot>
+        <screenshot>resources/screenshot3.jpg</screenshot> -->
+    </assets>
+  </extension>
+</addon>
+<addon id="repo_thuviencine" name="THUVIENCINE" version="0.0.1" provider-name="bioidaika">
+	<extension point="xbmc.addon.repository" name="repo_thuviencine">
+		<dir>
+			<info compressed="false">https://thuviencine.github.io/addons.xml</info>
+			<checksum>https://thuviencine.github.io/addons.xml.md5</checksum>
+			<datadir zip="true">https://thuviencine.github.io/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>ThuVienCine Repository</summary>
+		<description>Repository cho ThuVienCine</description>
+		<disclaimer>repo_thuviencine</disclaimer>
+		<platform>all</platform>
+		<assets>
+			<icon>icon.png</icon>
+			<!-- <fanart>icon.jpg</fanart> -->
+		</assets> 
+	</extension>
+</addon>
+</addons>
