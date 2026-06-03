@@ -1,74 +1,246 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Juno_okyoooooooooooooooooooo">
-    <meta name="copyright" content="J2TEAM">
-    <title>J2TEAM Community</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,900,700italic,700,600italic,600,400italic">
-    <link rel="stylesheet" href="animate.css">
-    <style>body,span{color:#fff}img,span{display:block}body{font-family:'Titillium Web',cursive;width:800px;margin:0 auto;text-align:center;background:#222;font-weight:100}div{display:inline-block;line-height:1;padding:20px;font-size:40px}span{font-size:20px}#days,#hours,#minutes{font-size:100px}#days{color:#db4844}#hours{color:#f07c22}#minutes{color:#f6da74}#seconds{font-size:50px;color:#abcd58}#timer{padding-top:0}</style>
-   <link rel="shortcut icon" href="img/logo.ico" />
-  </head>
-  <body>
-        <div style="text-align: center; padding-bottom: 0;">
-      <img src="img/j2team.png" alt="logo" width="400" class="animated infinite pulse">
-    </div>
+<html lang="vi">
 
-    <div id="timer">
-      <!--<div id="days"></div>-->
-      <div id="days"></div>
-      <div id="hours"></div>
-      <div id="minutes"></div>
-      <div id="seconds"></div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script>
-      let timeout = null;
-
-      function makeTimer() {
-        // Edit Here
-        //---- let endTime = new Date("'02/14/2018 23:59:59 GMT+0700 (SE Asia Standard Time)"); ----
-        let endTime = new Date("'01/22/2023 23:59:59 GMT+0700 (SE Asia Standard Time)");
-        endTime = (Date.parse(endTime) / 1000);
-
-        let now = new Date();
-        now = (Date.parse(now) / 1000);
-
-        let timeLeft = endTime - now,
-          days = Math.floor(timeLeft / 86400),
-          hours = Math.floor((timeLeft - (days * 86400)) / 3600),
-          minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600)) / 60),
-          seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
-
-        if (hours === 0 && minutes === 0 && seconds === 0) {
-          clearTimeout(timeout);
-        } else {
-          if (hours < "10") {
-            hours = "0" + hours;
-          }
-          if (minutes < "10") {
-            minutes = "0" + minutes;
-          }
-          if (seconds < "10") {
-            seconds = "0" + seconds;
-          }
-
-          $("#days").html(days + "<span>Days</span>");
-          $("#hours").html(hours + "<span>Hours</span>");
-          $("#minutes").html(minutes + "<span>Minutes</span>");
-          $("#seconds").html(seconds + "<span>Seconds</span>");
-
-          timeout = setTimeout(makeTimer, 1000);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThuVienCine Kodi Repository</title>
+    <meta name="description"
+        content="ThuVienCine Kodi Repository. Hướng dẫn cài đặt addon ThuVienCine trên Kodi.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      }
 
-      makeTimer();
-    </script>
-    <audio controls autoplay>
-      <source src="https://data53.chiasenhac.com/downloads/1068/2/1067711-dc965a0c/128/Uoc%20Mo%20Ngot%20Ngao%20-%20Dan%20Truong_%20Cam%20Ly.mp3" type="audio/mp3"/>
-    </audio>
-  </body>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00d4ff;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .warning {
+            background: #3d1f1f;
+            border-left: 4px solid #ff4444;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9em;
+        }
+
+        .warning strong {
+            color: #ff6b6b;
+        }
+
+        .tip {
+            background: #1f3d2a;
+            border-left: 4px solid #44ff88;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.9em;
+        }
+
+        .tip strong {
+            color: #6bffaa;
+        }
+
+        .video-section {
+            margin-bottom: 25px;
+        }
+
+        .video-section h2 {
+            color: #00d4ff;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+            margin-bottom: 15px;
+        }
+
+        .video-wrapper iframe,
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .steps {
+            background: #16213e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .steps h2 {
+            color: #00d4ff;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .steps ol {
+            padding-left: 20px;
+        }
+
+        .steps ol li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        .steps code {
+            background: #0f3460;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #00d4ff;
+            font-size: 0.95em;
+        }
+
+        .downloads {
+            background: #16213e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .downloads h2 {
+            color: #00d4ff;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .downloads ul {
+            list-style: none;
+        }
+
+        .downloads li {
+            margin-bottom: 8px;
+        }
+
+        .downloads a {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+
+        .downloads a:hover {
+            color: #00d4ff;
+            text-decoration: underline;
+        }
+
+        .downloads .desc {
+            color: #888;
+            font-size: 0.85em;
+            margin-left: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #555;
+            font-size: 0.8em;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎬 ThuVienCine Kodi Repository</h1>
+        <p class="subtitle">ThuVienCine — Addon tổng hợp link Fshare trên Kodi</p>
+
+        <div class="warning">
+            <strong>⚠️ Lưu ý:</strong> Hãy cẩn thận với các nguồn repo trên Internet, chúng có thể bị gắn mã độc nhằm
+            chiếm đoạt tài khoản hoặc khiến thiết bị của bạn nhiễm virus!
+        </div>
+
+        <div class="video-section">
+            <h2>📺 Video hướng dẫn cài đặt</h2>
+            <p style="margin-bottom: 10px;">
+                🎥 <a href="https://www.youtube.com/results?search_query=thuviencine+h%C6%B0%E1%BB%9Bng+d%E1%BA%ABn"
+                    target="_blank" rel="noopener" style="color: #4fc3f7; text-decoration: none;">Xem video hướng dẫn
+                    trên YouTube</a>
+            </p>
+            <p>
+                📖 <a
+                    href="https://blog.fshare.vn/huong-dan-cach-cai-kodi-de-xem-video-truc-tuyen-ai-cung-lam-duoc.html"
+                    target="_blank" rel="noopener" style="color: #4fc3f7; text-decoration: none;">Hướng dẫn đầy đủ cách
+                    cài Kodi (blog.fshare.vn)</a>
+            </p>
+        </div>
+
+        <div class="steps">
+            <h2>📋 Hướng dẫn cài đặt</h2>
+            <ol>
+                <li>Mở <strong>Kodi</strong> → <strong>Settings</strong> (⚙️) → <strong>File Manager</strong></li>
+                <li>Chọn <strong>Add source</strong> → nhập địa chỉ: <code>https://thuviencine.github.io/</code></li>
+                <li>Đặt tên nguồn (ví dụ: <code>thuviencine</code>) → nhấn <strong>OK</strong></li>
+                <li>Quay lại → <strong>Add-ons</strong> → <strong>Install from zip file</strong> → chọn nguồn
+                    <code>thuviencine</code>
+                </li>
+                <li>Chọn <code>repo_thuviencine-0.0.1.zip</code> → chờ thông báo cài đặt thành công</li>
+                <li>Vào <strong>Install from repository</strong> → <strong>THUVIENCINE</strong> → <strong>Video
+                        add-ons</strong> → <strong>ThuVienCine</strong> → <strong>Install</strong></li>
+                <li>Addon sẽ tự động cập nhật khi có phiên bản mới 🎉</li>
+            </ol>
+            <div class="tip" style="margin-top: 15px; margin-bottom: 0;">
+                <strong>💡 Mẹo:</strong> Nếu bước 6 (Install from repository) thất bại, bạn có thể cài đặt trực tiếp
+                bằng cách vào <strong>Install from zip file</strong> → chọn nguồn <code>thuviencine</code> →
+                <code>plugin.video.thuviencine</code> → chọn <code>plugin.video.thuviencine-0.0.5.zip</code>.
+            </div>
+        </div>
+
+        <div class="downloads">
+            <h2>📥 Tải về</h2>
+            <ul>
+                <li>
+                    📦 <a href="/repo_thuviencine/repo_thuviencine-0.0.1.zip">/repo_thuviencine/repo_thuviencine-0.0.1.zip</a>
+                    <span class="desc">— Repository </span>
+                </li>
+                <li>
+                    📦 <a href="/plugin.video.thuviencine/plugin.video.thuviencine-0.0.5.zip">/plugin.video.thuviencine/plugin.video.thuviencine-0.0.5.zip</a>
+                    <span class="desc">— Plugin ThuVienCine</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            Nội dung được thu thập từ Internet. ThuVienCine không chịu trách nhiệm về nội dung hiển thị bên trong addon.
+        </div>
+    </div>
+</body>
+
 </html>
