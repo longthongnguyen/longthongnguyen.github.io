@@ -159,23 +159,46 @@ function showFolderView() {
 // ── Load ──────────────────────────────────────────────────────────────────
 function loadFolder(linkcode, page) {
   if (page) currentPage = page;
+
   var sort = document.getElementById('sortSelect').value;
+
   setLoading(true);
   renderBreadcrumb();
-  fetch('/api/folder?linkcode=' + encodeURIComponent(linkcode) + '&sort=' + encodeURIComponent(sort) + '&page=' + currentPage)
-    .then(function(res) {
-      return res.json().then(function(data) { return {ok: res.ok, status: res.status, data: data}; });
+
+  fetch(
+    'https://www.fshare.vn/api/v3/files/folder?' +
+    'linkcode=' + encodeURIComponent(linkcode) +
+    '&sort=' + encodeURIComponent(sort) +
+    '&page=' + currentPage
+  )
+    .then(function (res) {
+      return res.json().then(function (data) {
+        return {
+          ok: res.ok,
+          status: res.status,
+          data: data
+        };
+      });
     })
-    .then(function(r) {
-      if (!r.ok) { setError(t().errApi + r.status + ': ' + (r.data.message || r.data.error || 'Unknown')); return; }
+    .then(function (r) {
+      if (!r.ok) {
+        setError(
+          t().errApi +
+          r.status +
+          ': ' +
+          (r.data.message || r.data.error || 'Unknown')
+        );
+        return;
+      }
+
       renderFolder(r.data, linkcode);
     })
-    .catch(function(e) { setError(t().errConn + e.message); })
-    .finally(function() { setLoading(false); });
-}
-
-function reloadCurrentFolder() {
-  if (navStack.length) { currentPage = 1; loadFolder(navStack[navStack.length - 1].linkcode); }
+    .catch(function (e) {
+      setError(t().errConn + e.message);
+    })
+    .finally(function () {
+      setLoading(false);
+    });
 }
 
 // ── Render ────────────────────────────────────────────────────────────────
